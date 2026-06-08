@@ -1,0 +1,43 @@
+@media (max-width: 480px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    background: #151520;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 8px 0;
+  }
+
+  td::before {
+    font-weight: bold;
+    color: #00f5ff;
+  }
+
+  td:nth-child(1)::before { content: "ID"; }
+  td:nth-child(2)::before { content: "Título"; }
+  td:nth-child(3)::before { content: "Género"; }
+  td:nth-child(4)::before { content: "Plataforma"; }
+  td:nth-child(5)::before { content: "Lanzamiento"; }
+  td:nth-child(6)::before { content: "Precio"; }
+  td:nth-child(7)::before { content: "Disponible"; }
+  td:nth-child(8)::before { content: "Progreso"; }
+}

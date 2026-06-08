@@ -11,8 +11,8 @@ function App() {
   return (
     <div>
       <h1>Tienda de Video-Juegos</h1>
-      <h4>listado de progreso</h4>
-      <TablaVideoJuegos dataVideoJuegos={videoJuegos}></TablaVideoJuegos>
+      <h4>Listado</h4>
+      <TablaVideoJuegos dataVideoJuegos={videoJuegos}></TablaVideoJuegos>      
     </div>
   )
 }
