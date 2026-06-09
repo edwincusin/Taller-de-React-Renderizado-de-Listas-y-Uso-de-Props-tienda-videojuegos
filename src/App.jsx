@@ -6,7 +6,7 @@ import TablaVideoJuegos from './components/TablaVideojuegos.jsx'
 
 //FUNCION PRINCIPAL DE APP
 function App() {
-
+  //variable de estado del data
   const [videoJuegos, setVideojuegos] = useState(data);
   return (
     <div>
