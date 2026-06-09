@@ -1,8 +1,14 @@
 import './TablaVideojuegos.css'
+import { useNavigate } from "react-router-dom";
 
-function TablaVideoJuegos({ dataVideoJuegos, onEliminar }) {
+function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
 
-    
+    const navigate = useNavigate();
+
+    function manejarEditar(vid) {
+        navigate('/editar', { state: { videoJuego: vid } });
+    }
+
     return (
         <div className="tabla-container">
             <table>
@@ -28,7 +34,7 @@ function TablaVideoJuegos({ dataVideoJuegos, onEliminar }) {
                             <td>{videoJuego.genero}</td>
                             <td>{videoJuego.plataforma}</td>
                             <td>{videoJuego.lanzamiento}</td>
-                            <td>${videoJuego.precio.toFixed(2)}</td>
+                            <td>{(videoJuego.precio).toFixed(2)}</td>
 
                             <td>
                                 <span style={{ color: videoJuego.disponible ? 'green' : 'red' }}>
@@ -38,16 +44,18 @@ function TablaVideoJuegos({ dataVideoJuegos, onEliminar }) {
 
                             <td>
                                 <progress
-                                    value={videoJuego.progreso * 100}
+                                    value={(videoJuego.progreso) * 100}
                                     max="100">
                                 </progress>
-                                {Math.round(videoJuego.progreso * 100)}%
+                                {Math.round((videoJuego.progreso) * 100)}%
                             </td>
 
                             <td>
                                 <div className="acciones">
-                                    <button className="btn-editar">
-                                    Editar
+                                    <button 
+                                        onClick={()=>manejarEditar(videoJuego)}
+                                    >
+                                        Editar
                                     </button>
 
                                     <button

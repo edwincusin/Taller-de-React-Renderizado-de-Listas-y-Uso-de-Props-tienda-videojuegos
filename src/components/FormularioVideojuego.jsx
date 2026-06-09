@@ -1,23 +1,22 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function FormularioVideojuego({ onGuardar }) {
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     // Recupera el videojuego enviado desde la pantalla anterior.
     // Si existe location.state, obtiene el objeto videoJuego.
     // Si no existe, asigna null para indicar que es un nuevo registro.
-    const location=useLocation();
+    const location = useLocation();
     const videoJuegoRecuperado = location.state?.videoJuego || null;
 
     const [titulo, setTitulo] = useState("");
     const [genero, setGenero] = useState("");
     const [plataforma, setPlataforma] = useState("");
     const [lanzamiento, setLanzamiento] = useState("");
-    const [precio, setPrecio] = useState("");
+    const [precio, setPrecio] = useState(0.0);
     const [disponible, setDisponible] = useState(true);
-    const [progreso, setProgreso] = useState('');
+    const [progreso, setProgreso] = useState(0);
 
     // Se ejecuta cada vez que cambia el videojuego recuperado.
     // Si existe un videojuego, carga sus datos en los estados
@@ -38,9 +37,9 @@ function FormularioVideojuego({ onGuardar }) {
             setGenero("");
             setPlataforma("");
             setLanzamiento("");
-            setPrecio('');
+            setPrecio(0.0);
             setDisponible(true);
-            setProgreso('');
+            setProgreso(0.0);
         }
     }, [videoJuegoRecuperado]); // Se ejecuta nuevamente cuando cambia el videojuego recuperado.
 
@@ -58,7 +57,7 @@ function FormularioVideojuego({ onGuardar }) {
             lanzamiento: Number(lanzamiento),
             precio: Number(precio),
             disponible: disponible,  // Valor booleano del checkbox
-            progreso: Number(progreso) // Convierte el progreso a número
+            progreso: Number(progreso)/100 // Convierte el progreso a número
             // Datos capturados desde los estados del formulario
         };
         onGuardar(videoJuego); // Envía el objeto videojuego al componente padre
@@ -66,9 +65,9 @@ function FormularioVideojuego({ onGuardar }) {
     }
 
     //MANEJAR CANCELAR
-    function manejarCancelar(){
+    function manejarCancelar() {
         navigate('/');
-        
+
     }
 
     return (
@@ -80,7 +79,6 @@ function FormularioVideojuego({ onGuardar }) {
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
                     placeholder="Ejm: Minecraft"
-                    required="Ingrese un datos"
                 />
             </div>
             <div>
@@ -91,6 +89,7 @@ function FormularioVideojuego({ onGuardar }) {
                         value={genero}
                         onChange={(e) => setGenero(e.target.value)}
                     >
+                        <option value="">selecciona...</option>
                         <option value="Aventura">Aventura</option>
                         <option value="Acción">Acción</option>
                         <option value="Sandbox">Sandbox</option>
@@ -109,6 +108,7 @@ function FormularioVideojuego({ onGuardar }) {
                         value={plataforma}
                         onChange={(e) => setPlataforma(e.target.value)}
                     >
+                        <option value="">selecciona...</option>
                         <option value="Nintendo Switch">Nintendo Switch</option>
                         <option value="PlayStation 5">PlayStation 5</option>
                         <option value="PC">PC</option>
@@ -145,6 +145,8 @@ function FormularioVideojuego({ onGuardar }) {
             <div>
                 <label>Progreso:</label>
                 <input type="number"
+                    min="0"
+                    max="100"
                     value={progreso}
                     onChange={(e) => setProgreso(e.target.value)}
                     placeholder="Ejm: 10"
@@ -153,13 +155,13 @@ function FormularioVideojuego({ onGuardar }) {
             <div>
                 <button
                     onClick={manejarGuardar}
-                >{videoJuegoRecuperado?"Guardar Cambios":"Guardar Nuevo"}</button>
+                >{videoJuegoRecuperado ? "Guardar Cambios" : "Guardar Nuevo"}</button>
 
                 <button
                     onClick={manejarCancelar}
                 >Cancelar</button>
             </div>
-            
+
         </div>
     );
 }
