@@ -1,0 +1,75 @@
+/* Contenedor principal que centra todo en la pantalla */
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0c1b 100%);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Tarjeta o bloque de contenido */
+.error-content {
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Estilo para el texto principal */
+.error-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* El truco del degradado en el texto "404" */
+.error-title span {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 15px rgba(255, 65, 108, 0.3));
+}
+
+/* Subtexto descriptivo */
+.error-subtitle {
+    display: block;
+    font-size: 1.1rem;
+    color: #8b8b9f;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes para pantallas más pequeñas (móviles) */
+@media (max-width: 600px) {
+    .error-title {
+        font-size: 1.8rem;
+    }
+    .error-title span {
+        font-size: 3.5rem;
+    }
+    .error-subtitle {
+        font-size: 0.95rem;
+    }
+}

@@ -5,6 +5,8 @@ import Navbar from './components/Navbar.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import TablaVideoJuegos from './components/TablaVideojuegos.jsx';
 import FormularioVideojuego from './components/FormularioVideojuego.jsx';
+import NoEncontrada from './components/NoEncontrado.jsx';
+
 
 //FUNCION PRINCIPAL DE APP
 function App() {
@@ -73,6 +75,13 @@ function App() {
             <FormularioVideojuego
               onGuardar={manejarGuardar}
             />
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <NoEncontrada/>
           }
         />
 
