@@ -3,12 +3,17 @@ import { useState } from 'react'
 import data from './data/videojuegos.js'
 //IMPORTACION DEL COMPONENTE TABLAVIDEOJUEGOS
 import TablaVideoJuegos from './components/TablaVideojuegos.jsx'
+import FormularioVideojuego from './components/FormularioVideojuego.jsx';
 
 //FUNCION PRINCIPAL DE APP
 function App() {
   //variable de estado del data
   const [videoJuegos, setVideojuegos] = useState(data);
 
+  //GUARDAR VIDEO JUEGO
+  function guardar(videoJuego){
+    setVideojuegos([...videoJuegos,videoJuego]);
+  }
 
   //ELIMINAR VIDEO JUEGO 
   function eliminar(id) {
@@ -33,11 +38,14 @@ function App() {
   return (
     <>
       <h1>Tienda de Video-Juegos</h1>
-      <TablaVideoJuegos
+      {/* <TablaVideoJuegos
         dataVideoJuegos={videoJuegos}
         onEliminar={eliminar}
-      />
-      
+      /> */}
+      <FormularioVideojuego
+        onGuardar={guardar}
+      ></FormularioVideojuego>
+
     </>
   )
 }
