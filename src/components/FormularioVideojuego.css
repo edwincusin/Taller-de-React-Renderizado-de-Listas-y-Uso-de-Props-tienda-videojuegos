@@ -1,0 +1,127 @@
+/* 🌈 Contenedor principal */
+.form-container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 18px;
+
+    background: linear-gradient(145deg, #f8fafc, #ffffff);
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* 🧠 Título */
+.form-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+/* 📦 Grid del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* 📌 Grupo */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🏷️ Labels */
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #334155;
+}
+
+/* ✏️ Inputs y selects */
+.form-group input,
+.form-group select {
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+
+    color: #0f172a;
+    outline: none;
+
+    transition: 0.25s;
+}
+
+/* 💡 Focus futurista */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+/* ☑️ Checkbox */
+.form-group.checkbox {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 🎮 acciones botones */
+.form-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+/* 🔵 Guardar */
+.btn-save {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+}
+
+/* 🔴 Cancelar */
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+
+    background: #ef4444;
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.btn-cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.25);
+}

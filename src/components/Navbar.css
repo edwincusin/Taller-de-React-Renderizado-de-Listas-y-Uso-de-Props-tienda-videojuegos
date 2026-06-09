@@ -1,0 +1,86 @@
+/* ===== NAVBAR FUTURISTA ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+
+    /* fondo cyber oscuro */
+    background: linear-gradient(135deg, #0a0f1c, #05070f);
+
+    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* ===== LOGO ===== */
+.navbar__logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: #00f5ff;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.6);
+}
+
+/* ===== LINKS CONTAINER ===== */
+.navbar__links {
+    display: flex;
+    gap: 14px;
+}
+
+/* ===== LINKS FUTURISTAS ===== */
+.navbar__link {
+    text-decoration: none;
+    color: #cbd5e1;
+
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 10px;
+
+    transition: all 0.25s ease;
+
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* hover neon */
+.navbar__link:hover {
+    background: rgba(0, 245, 255, 0.15);
+    color: #00f5ff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 10px rgba(0, 245, 255, 0.4),
+        0 0 20px rgba(0, 245, 255, 0.2);
+
+    border: 1px solid rgba(0, 245, 255, 0.5);
+}
+
+/* efecto click */
+.navbar__link:active {
+    transform: scale(0.97);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .navbar__links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar__link {
+        width: 100%;
+        text-align: center;
+    }
+}

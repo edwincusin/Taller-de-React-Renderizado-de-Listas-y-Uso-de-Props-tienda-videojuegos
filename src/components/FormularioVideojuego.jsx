@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import './FormularioVideojuego.css';
 
 function FormularioVideojuego({ onGuardar }) {
 
@@ -57,7 +58,7 @@ function FormularioVideojuego({ onGuardar }) {
             lanzamiento: Number(lanzamiento),
             precio: Number(precio),
             disponible: disponible,  // Valor booleano del checkbox
-            progreso: Number(progreso)/100 // Convierte el progreso a número
+            progreso: Number(progreso) / 100 // Convierte el progreso a número
             // Datos capturados desde los estados del formulario
         };
         onGuardar(videoJuego); // Envía el objeto videojuego al componente padre
@@ -71,25 +72,30 @@ function FormularioVideojuego({ onGuardar }) {
     }
 
     return (
-        <div>
-            <h2>{videoJuegoRecuperado ? "Editar Videojuego" : "Nuevo VideoJuego"}</h2>
-            <div>
-                <label>Titulo:</label>
-                <input type="text"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                    placeholder="Ejm: Minecraft"
-                />
-            </div>
-            <div>
-                <label className="form-label">
-                    Genero:
+        <div className="form-container">
+            <h2 className="form-title">
+                {videoJuegoRecuperado ? "Editar Videojuego" : "Nuevo VideoJuego"}
+            </h2>
+
+            <div className="form-grid">
+
+                <div className="form-group">
+                    <label>Título</label>
+                    <input
+                        type="text"
+                        value={titulo}
+                        onChange={(e) => setTitulo(e.target.value)}
+                        placeholder="Ejm: Minecraft"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Género</label>
                     <select
-                        className="form-select"
                         value={genero}
                         onChange={(e) => setGenero(e.target.value)}
                     >
-                        <option value="">selecciona...</option>
+                        <option value="">Selecciona...</option>
                         <option value="Aventura">Aventura</option>
                         <option value="Acción">Acción</option>
                         <option value="Sandbox">Sandbox</option>
@@ -98,70 +104,73 @@ function FormularioVideojuego({ onGuardar }) {
                         <option value="Carreras">Carreras</option>
                         <option value="Terror">Terror</option>
                     </select>
-                </label>
-            </div>
-            <div>
-                <label className="form-label">
-                    Plataforma:
+                </div>
+
+                <div className="form-group">
+                    <label>Plataforma</label>
                     <select
-                        className="form-select"
                         value={plataforma}
                         onChange={(e) => setPlataforma(e.target.value)}
                     >
-                        <option value="">selecciona...</option>
+                        <option value="">Selecciona...</option>
                         <option value="Nintendo Switch">Nintendo Switch</option>
                         <option value="PlayStation 5">PlayStation 5</option>
                         <option value="PC">PC</option>
                         <option value="Xbox Series X">Xbox Series X</option>
                     </select>
-                </label>
-            </div>
-            <div>
-                <label>Lanzamiento:</label>
-                <input type="number"
-                    value={lanzamiento}
-                    onChange={(e) => setLanzamiento(e.target.value)}
-                    placeholder="Ejm: 2002"
-                />
-            </div>
-            <div>
-                <label>Precio:</label>
-                <input type="number"
-                    value={precio}
-                    onChange={(e) => setPrecio(e.target.value)}
-                    placeholder="Ejm: 53.00"
-                />
-            </div>
-            <div>
-                <label className="checkbox-label">
-                    Disponible:
+                </div>
+
+                <div className="form-group">
+                    <label>Lanzamiento</label>
                     <input
-                        type="checkbox"
-                        checked={disponible}
-                        onChange={(e) => setDisponible(e.target.checked)}
+                        type="number"
+                        value={lanzamiento}
+                        onChange={(e) => setLanzamiento(e.target.value)}
                     />
-                </label>
-            </div>
-            <div>
-                <label>Progreso:</label>
-                <input type="number"
-                    min="0"
-                    max="100"
-                    value={progreso}
-                    onChange={(e) => setProgreso(e.target.value)}
-                    placeholder="Ejm: 10"
-                />
-            </div>
-            <div>
-                <button
-                    onClick={manejarGuardar}
-                >{videoJuegoRecuperado ? "Guardar Cambios" : "Guardar Nuevo"}</button>
+                </div>
 
-                <button
-                    onClick={manejarCancelar}
-                >Cancelar</button>
+                <div className="form-group">
+                    <label>Precio</label>
+                    <input
+                        type="number"
+                        value={precio}
+                        onChange={(e) => setPrecio(e.target.value)}
+                    />
+                </div>
+
+                <div className="form-group checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={disponible}
+                            onChange={(e) => setDisponible(e.target.checked)}
+                        />
+                        Disponible
+                    </label>
+                </div>
+
+                <div className="form-group">
+                    <label>Progreso (%)</label>
+                    <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        value={progreso}
+                        onChange={(e) => setProgreso(e.target.value)}
+                    />
+                </div>
+
             </div>
 
+            <div className="form-actions">
+                <button className="btn-save" onClick={manejarGuardar}>
+                    {videoJuegoRecuperado ? "Guardar Cambios" : "Guardar Nuevo"}
+                </button>
+
+                <button className="btn-cancel" onClick={manejarCancelar}>
+                    Cancelar
+                </button>
+            </div>
         </div>
     );
 }
