@@ -8,12 +8,37 @@ import TablaVideoJuegos from './components/TablaVideojuegos.jsx'
 function App() {
   //variable de estado del data
   const [videoJuegos, setVideojuegos] = useState(data);
+
+
+  //ELIMINAR VIDEO JUEGO 
+  function eliminar(id) {
+    const filtrados = videoJuegos.filter((vid) => vid.id != id);
+    setVideojuegos(filtrados);
+  }
+  //EDITAR VIDEOJUEGO
+  function editar(videoJuegoEditado) {
+    const actualizados = videoJuegos.map((vid) => { // Recorre todos los videojuegos
+      if (vid.id === videoJuegoEditado.id) { // Si encuentra el mismo id
+        return videoJuegoEditado; // Reemplaza el objeto viejo por el editado
+      } else {
+        return vid; // Mantiene los demás videojuegos iguales
+      }
+    });
+    setVideojuegos(actualizados); // Actualiza el estado con el nuevo arreglo
+  }
+
+
+
+  //RETURN APP PRINCIPAL
   return (
-    <div>
+    <>
       <h1>Tienda de Video-Juegos</h1>
-      <h4>Listado</h4>
-      <TablaVideoJuegos dataVideoJuegos={videoJuegos}></TablaVideoJuegos>      
-    </div>
+      <TablaVideoJuegos
+        dataVideoJuegos={videoJuegos}
+        onEliminar={eliminar}
+      />
+      
+    </>
   )
 }
 

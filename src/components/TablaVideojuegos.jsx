@@ -1,6 +1,8 @@
-import './TablaVideoJuegos.css'
+import './TablaVideojuegos.css'
 
-function TablaVideoJuegos({ dataVideoJuegos }) {
+function TablaVideoJuegos({ dataVideoJuegos, onEliminar }) {
+
+    
     return (
         <div className="tabla-container">
             <table>
@@ -14,6 +16,7 @@ function TablaVideoJuegos({ dataVideoJuegos }) {
                         <th>PRECIO</th>
                         <th>DISPONIBLE</th>
                         <th>PROGRESO</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
 
@@ -39,6 +42,20 @@ function TablaVideoJuegos({ dataVideoJuegos }) {
                                     max="100">
                                 </progress>
                                 {Math.round(videoJuego.progreso * 100)}%
+                            </td>
+
+                            <td>
+                                <div className="acciones">
+                                    <button className="btn-editar">
+                                    Editar
+                                    </button>
+
+                                    <button
+                                        className="btn-eliminar"
+                                        onClick={() => onEliminar(videoJuego.id)}>
+                                        Eliminar
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     ))}

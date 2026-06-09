@@ -1,43 +1,365 @@
-@media (max-width: 480px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
+/* =====================================
+   CONTENEDOR GENERAL
+===================================== */
 
-  thead {
-    display: none;
-  }
+.tabla-container {
+    width: 95%;
+    max-width: 1400px;
 
-  tr {
-    margin-bottom: 15px;
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 10px;
-    background: #151520;
-  }
+    margin: 30px auto;
 
-  td {
-    display: flex;
-    justify-content: space-between;
+    background: #161b22;
+
+    border-radius: 16px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+
+    border: 1px solid #2d333b;
+}
+
+/* =====================================
+   TABLA
+===================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    color: #e6edf3;
+
+    min-width: 1000px;
+}
+
+/* =====================================
+   CABECERA
+===================================== */
+
+thead {
+    background:
+        linear-gradient(
+            135deg,
+            #6d28d9,
+            #7c3aed
+        );
+}
+
+th {
+    padding: 18px 12px;
+
+    text-align: left;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: white;
+
+    text-transform: uppercase;
+}
+
+/* =====================================
+   FILAS
+===================================== */
+
+tbody tr {
+    transition: all .25s ease;
+
+    border-bottom: 1px solid #2d333b;
+}
+
+tbody tr:hover {
+
+    background: #21262d;
+
+    transform: scale(1.003);
+}
+
+td {
+
+    padding: 16px 12px;
+
+    color: #c9d1d9;
+
+    font-size: 0.95rem;
+}
+
+/* =====================================
+   DISPONIBILIDAD
+===================================== */
+
+td span {
+
+    font-weight: 700;
+}
+
+/* =====================================
+   PROGRESS
+===================================== */
+
+progress {
+
+    width: 120px;
+
+    height: 10px;
+
+    margin-right: 8px;
+
     border: none;
-    padding: 8px 0;
-  }
 
-  td::before {
-    font-weight: bold;
-    color: #00f5ff;
-  }
+    border-radius: 10px;
 
-  td:nth-child(1)::before { content: "ID"; }
-  td:nth-child(2)::before { content: "Título"; }
-  td:nth-child(3)::before { content: "Género"; }
-  td:nth-child(4)::before { content: "Plataforma"; }
-  td:nth-child(5)::before { content: "Lanzamiento"; }
-  td:nth-child(6)::before { content: "Precio"; }
-  td:nth-child(7)::before { content: "Disponible"; }
-  td:nth-child(8)::before { content: "Progreso"; }
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+
+    background: #2d333b;
+
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+
+    background:
+        linear-gradient(
+            90deg,
+            #10b981,
+            #34d399
+        );
+
+    border-radius: 10px;
+}
+
+/* =====================================
+   BOTONES
+===================================== */
+
+td button {
+
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    margin-right: 8px;
+
+    transition: all .3s ease;
+}
+
+/* Editar */
+
+td button:first-child {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+td button:first-child:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+/* Eliminar */
+
+td button:last-child {
+
+    background: #dc2626;
+
+    color: white;
+}
+
+td button:last-child:hover {
+
+    background: #b91c1c;
+
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   SCROLL PERSONALIZADO
+===================================== */
+
+.tabla-container::-webkit-scrollbar {
+
+    height: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-track {
+
+    background: #161b22;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+
+    background: #6d28d9;
+
+    border-radius: 10px;
+}
+
+/* =====================================
+   RESPONSIVE TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+    th,
+    td {
+
+        padding: 12px 8px;
+
+        font-size: 0.85rem;
+    }
+
+    progress {
+
+        width: 90px;
+    }
+}
+
+/* =====================================
+   RESPONSIVE MOVIL
+===================================== */
+
+@media (max-width: 600px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+
+        display: block;
+    }
+
+    thead {
+
+        display: none;
+    }
+
+    tr {
+
+        margin: 15px;
+
+        padding: 15px;
+
+        border-radius: 12px;
+
+        background: #1e242c;
+
+        border: 1px solid #30363d;
+    }
+
+    td {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding: 10px 0;
+
+        border-bottom: 1px solid #2d333b;
+    }
+
+    td:last-child {
+
+        border-bottom: none;
+    }
+
+    td::before {
+
+        font-weight: bold;
+
+        color: #8b5cf6;
+
+        margin-right: 10px;
+    }
+
+    td:nth-child(1)::before { content: "ID"; }
+    td:nth-child(2)::before { content: "Título"; }
+    td:nth-child(3)::before { content: "Género"; }
+    td:nth-child(4)::before { content: "Plataforma"; }
+    td:nth-child(5)::before { content: "Lanzamiento"; }
+    td:nth-child(6)::before { content: "Precio"; }
+    td:nth-child(7)::before { content: "Disponible"; }
+    td:nth-child(8)::before { content: "Progreso"; }
+    td:nth-child(9)::before { content: "Acciones"; }
+
+    td button {
+
+        width: 100%;
+
+        margin: 5px 0;
+    }
+}
+
+/* ==========================
+   BOTONES DE ACCIONES
+========================== */
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.acciones button {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Botón Editar */
+.acciones button:first-child {
+    background: #2563eb;
+    color: white;
+}
+
+.acciones button:first-child:hover {
+    background: #1d4ed8;
+}
+
+/* Botón Eliminar */
+.acciones button:last-child {
+    background: #dc2626;
+    color: white;
+}
+
+.acciones button:last-child:hover {
+    background: #b91c1c;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+
+    .acciones {
+        flex-direction: column;
+    }
+
+    .acciones button {
+        width: 100%;
+    }
+
 }
