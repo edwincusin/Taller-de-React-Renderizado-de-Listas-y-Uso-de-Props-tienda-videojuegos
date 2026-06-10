@@ -22,7 +22,7 @@ function AlertaNotificacion({ mensaje }) { // Componente que recibe el mensaje a
 
     return (
         <div className="alerta-notificacion">
-            MSM: {mensaje} {/* Muestra el mensaje */}
+            Msg: {mensaje} {/* Muestra el mensaje */}
         </div>
     );
 }

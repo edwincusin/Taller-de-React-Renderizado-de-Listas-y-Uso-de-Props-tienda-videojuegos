@@ -70,7 +70,9 @@ function FormularioVideojuego({ onGuardar }) {
             lanzamiento: lanzamiento,
             precio: Number(precio),
             disponible: disponible,  // Valor booleano del checkbox
-            progreso: Number(progreso) / 100 // Convierte el progreso a número
+            progreso: Number(progreso) / 100, // Convierte el progreso a número
+            sinopsis:sinopsis,
+            calificacion:Number(calificacion)
             // Datos capturados desde los estados del formulario
         };
         onGuardar(videoJuego); // Envía el objeto videojuego al componente padre
@@ -85,7 +87,6 @@ function FormularioVideojuego({ onGuardar }) {
 
     }
 
-
     //VALIDACION Y MANEJO DE ERRORES
     const [errores, setErrores] = useState({});
 
@@ -96,7 +97,6 @@ function FormularioVideojuego({ onGuardar }) {
         if (!titulo.trim()) {
             erroresActivos.titulo = "El titulo es obligatorio";
         }
-
         //validar calificacion 
         if (calificacion < 1 || calificacion > 100) {
             erroresActivos.calificacion = "Rango calificacion no permitida"
@@ -105,7 +105,7 @@ function FormularioVideojuego({ onGuardar }) {
         if (sinopsis.trim().length < 10 || sinopsis.trim().length > 250) {
             erroresActivos.sinopsis = "La sinopsis debe tener entre 10 y 250 caracteres"
         }
-
+        
         if (Object.keys(erroresActivos).length > 0) {
             setErrores(erroresActivos);
             return true;
@@ -113,7 +113,6 @@ function FormularioVideojuego({ onGuardar }) {
             setErrores({});//limpia
             return false;
         }
-
     }
 
   return (
@@ -191,7 +190,7 @@ function FormularioVideojuego({ onGuardar }) {
             </div>
 
             <div className="form-actions">
-                <button className="btn-cancel" onClick={() => navigate('/')}>Cancelar</button>
+                <button className="btn-cancel" onClick={manejarCancelar}>Cancelar</button>
                 <button className="btn-save" onClick={manejarGuardar}>
                     {videoJuegoRecuperado ? <><FaEdit /> Guardar Cambios</> : <><FaPlus /> Guardar Nuevo</>}
                 </button>
