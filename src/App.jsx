@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import TablaVideoJuegos from './components/TablaVideojuegos.jsx';
 import FormularioVideojuego from './components/FormularioVideojuego.jsx';
 import NoEncontrada from './components/NoEncontrado.jsx';
+import AlertaNotificacion from './components/AlertaNotificacion.jsx';
 
 
 //FUNCION PRINCIPAL DE APP
@@ -28,15 +29,21 @@ function App() {
     );
   }, [videoJuegos]);
 
+  //VARIABLE DE ESTADO MENSAJE ALERTA
+  const [mensajeAlerta, setMensajeAlerta] = useState("");
+
   //GUARDAR VIDEO JUEGO
   function guardar(videoJuego) {
     setVideojuegos([...videoJuegos, videoJuego]);
+    setMensajeAlerta("Videojuego agregado correctamente");
   }
 
   //ELIMINAR VIDEO JUEGO 
   function eliminar(id) {
     const filtrados = videoJuegos.filter((vid) => vid.id != id);
     setVideojuegos(filtrados);
+    setMensajeAlerta("Videojuego eliminado correctamente");
+
   }
   //EDITAR VIDEOJUEGO
   function editar(videoJuegoEditado) {
@@ -48,6 +55,8 @@ function App() {
       }
     });
     setVideojuegos(actualizados); // Actualiza el estado con el nuevo arreglo
+    setMensajeAlerta("Videojuego actualizado correctamente");
+
   }
 
   //MANEJO GAURDAR
@@ -65,6 +74,11 @@ function App() {
   return (
 
     <BrowserRouter>
+      {mensajeAlerta && (
+        <AlertaNotificacion
+          mensaje={mensajeAlerta}
+        />
+      )}
       <Navbar />
       <Routes>
         <Route

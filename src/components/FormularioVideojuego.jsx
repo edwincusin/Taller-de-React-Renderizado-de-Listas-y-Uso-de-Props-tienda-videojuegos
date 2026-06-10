@@ -1,5 +1,5 @@
-import {  useEffect, useState } from "react";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import './FormularioVideojuego.css';
 
 function FormularioVideojuego({ onGuardar }) {
@@ -73,7 +73,9 @@ function FormularioVideojuego({ onGuardar }) {
             // Datos capturados desde los estados del formulario
         };
         onGuardar(videoJuego); // Envía el objeto videojuego al componente padre
-        navigate('/');
+        setTimeout(() => {
+            navigate("/");
+        }, 100);
     }
 
     //MANEJAR CANCELAR
@@ -99,7 +101,7 @@ function FormularioVideojuego({ onGuardar }) {
             erroresActivos.calificacion = "Rango calificacion no permitida"
         }
         //validar texto de sinopsis
-        if (sinopsis.trim().length < 10||sinopsis.trim().length > 250) {
+        if (sinopsis.trim().length < 10 || sinopsis.trim().length > 250) {
             erroresActivos.sinopsis = "La sinopsis debe tener entre 10 y 250 caracteres"
         }
 
@@ -209,7 +211,7 @@ function FormularioVideojuego({ onGuardar }) {
                         onChange={(e) => setProgreso(e.target.value)}
                     />
                 </div>
-               
+
 
                 <div className="form-group">
                     <label>Calificacion critica (0/100)</label>
@@ -228,15 +230,15 @@ function FormularioVideojuego({ onGuardar }) {
                     }
                 </div>
 
-                 <div className="form-group">
+                <div className="form-group">
                     <label>Sipnosis</label>
                     <textarea
-                    style={{width:'250px', height:'200px'}}
+                        style={{ width: '250px', height: '200px' }}
                         value={sinopsis}
                         onChange={(e) => setSinopsis(e.target.value)}
-                        
+
                     />
-                                        {
+                    {
                         errores.sinopsis &&
                         <span className="error">
                             {errores.sinopsis}
