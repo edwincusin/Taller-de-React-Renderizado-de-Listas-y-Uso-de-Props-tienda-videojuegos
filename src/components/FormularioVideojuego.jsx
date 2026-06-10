@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { use, useEffect, useState } from "react";
+import { data, useLocation, useNavigate } from "react-router-dom";
 import './FormularioVideojuego.css';
 
 function FormularioVideojuego({ onGuardar }) {
@@ -18,6 +18,8 @@ function FormularioVideojuego({ onGuardar }) {
     const [precio, setPrecio] = useState(0.0);
     const [disponible, setDisponible] = useState(true);
     const [progreso, setProgreso] = useState(0);
+    const [sinopsis, setSinopsis] = useState('');
+    const [calificacion, setClificacion] = useState(0);
 
     // Se ejecuta cada vez que cambia el videojuego recuperado.
     // Si existe un videojuego, carga sus datos en los estados
@@ -33,6 +35,8 @@ function FormularioVideojuego({ onGuardar }) {
             setPrecio(videoJuegoRecuperado.precio);
             setDisponible(videoJuegoRecuperado.disponible);
             setProgreso(videoJuegoRecuperado.progreso);
+            setSinopsis(videoJuegoRecuperado.sinopsis);
+            setClificacion(videoJuegoRecuperado.calificacion);
         } else {
             setTitulo("");
             setGenero("");
@@ -41,6 +45,9 @@ function FormularioVideojuego({ onGuardar }) {
             setPrecio(0.0);
             setDisponible(true);
             setProgreso(0.0);
+            setSinopsis('');
+            setClificacion(0);
+
         }
     }, [videoJuegoRecuperado]); // Se ejecuta nuevamente cuando cambia el videojuego recuperado.
 
@@ -123,9 +130,11 @@ function FormularioVideojuego({ onGuardar }) {
                 <div className="form-group">
                     <label>Lanzamiento</label>
                     <input
-                        type="number"
+                        type="date"
                         value={lanzamiento}
                         onChange={(e) => setLanzamiento(e.target.value)}
+                        max={new Date().toISOString().split("|")[0]}
+                        required
                     />
                 </div>
 
@@ -157,6 +166,24 @@ function FormularioVideojuego({ onGuardar }) {
                         max="100"
                         value={progreso}
                         onChange={(e) => setProgreso(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Sipnosis</label>
+                    <textarea
+                        value={sinopsis}
+                        onChange={(e) => setSinopsis(e.target.value)}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Calificacion critica (0/100)</label>
+                    <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        value={calificacion}
+                        onChange={(e) => setClificacion(e.target.value)}
                     />
                 </div>
 
