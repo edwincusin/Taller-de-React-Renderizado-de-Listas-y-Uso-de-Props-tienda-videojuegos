@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import './FormularioVideojuego.css';
-import { FaGamepad, FaTrash, FaEdit, FaPlus, FaEye  } from "react-icons/fa";
+import { FaGamepad, FaEdit, FaPlus, FaCalendarAlt, FaDollarSign, FaCheckSquare, FaPercent, FaStar, FaAlignLeft } from "react-icons/fa";
 
 function FormularioVideojuego({ onGuardar }) {
 
@@ -116,36 +116,22 @@ function FormularioVideojuego({ onGuardar }) {
 
     }
 
-    return (
+  return (
         <div className="form-container">
             <h1 className="form-title">
-                {videoJuegoRecuperado ? "Editar Videojuego" : "Nuevo VideoJuego"}
+                {videoJuegoRecuperado ? <><FaEdit /> Editar Videojuego</> : <><FaGamepad /> Nuevo Videojuego</>}
             </h1>
 
             <div className="form-grid">
-
                 <div className="form-group">
-                    <label>Título</label>
-                    <input
-                        type="text"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                        placeholder="Ejm: Minecraft"
-                    />
-                    {
-                        errores.titulo &&
-                        <span className="error">
-                            {errores.titulo}
-                        </span>
-                    }
+                    <label><FaGamepad /> Título</label>
+                    <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} placeholder="Ejm: Minecraft" />
+                    {errores.titulo && <span className="error-mensaje">{errores.titulo}</span>}
                 </div>
 
                 <div className="form-group">
-                    <label>Género</label>
-                    <select
-                        value={genero}
-                        onChange={(e) => setGenero(e.target.value)}
-                    >
+                    <label><FaGamepad /> Género</label>
+                    <select value={genero} onChange={(e) => setGenero(e.target.value)}>
                         <option value="">Selecciona...</option>
                         <option value="Aventura">Aventura</option>
                         <option value="Acción">Acción</option>
@@ -158,11 +144,8 @@ function FormularioVideojuego({ onGuardar }) {
                 </div>
 
                 <div className="form-group">
-                    <label>Plataforma</label>
-                    <select
-                        value={plataforma}
-                        onChange={(e) => setPlataforma(e.target.value)}
-                    >
+                    <label><FaGamepad /> Plataforma</label>
+                    <select value={plataforma} onChange={(e) => setPlataforma(e.target.value)}>
                         <option value="">Selecciona...</option>
                         <option value="Nintendo Switch">Nintendo Switch</option>
                         <option value="PlayStation 5">PlayStation 5</option>
@@ -172,90 +155,45 @@ function FormularioVideojuego({ onGuardar }) {
                 </div>
 
                 <div className="form-group">
-                    <label>Lanzamiento</label>
-                    <input
-                        type="date"
-                        value={lanzamiento}
-                        onChange={(e) => setLanzamiento(e.target.value)}
-                        max={new Date().toISOString().split("|")[0]}
-                        required
-                    />
+                    <label><FaCalendarAlt /> Fecha lanzamiento</label>
+                    <input type="date" value={lanzamiento} onChange={(e) => setLanzamiento(e.target.value)} max={new Date().toISOString().split("T")[0]} required />
                 </div>
 
                 <div className="form-group">
-                    <label>Precio</label>
-                    <input
-                        type="number"
-                        value={precio}
-                        onChange={(e) => setPrecio(e.target.value)}
-                    />
+                    <label><FaDollarSign /> Precio</label>
+                    <input type="number" step="0.01" value={precio} onChange={(e) => setPrecio(e.target.value)} />
                 </div>
 
                 <div className="form-group checkbox">
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={disponible}
-                            onChange={(e) => setDisponible(e.target.checked)}
-                        />
-                        Disponible
+                    <label className="checkbox-label">
+                        <input type="checkbox" checked={disponible} onChange={(e) => setDisponible(e.target.checked)} />
+                        <span className="custom-checkbox"><FaCheckSquare /> Disponible</span>
                     </label>
                 </div>
 
                 <div className="form-group">
-                    <label>Progreso (%)</label>
-                    <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={progreso}
-                        onChange={(e) => setProgreso(e.target.value)}
-                    />
-                </div>
-
-
-                <div className="form-group">
-                    <label>Calificacion critica (0/100)</label>
-                    <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={calificacion}
-                        onChange={(e) => setClificacion(e.target.value)}
-                    />
-                    {
-                        errores.calificacion &&
-                        <span className="error">
-                            {errores.calificacion}
-                        </span>
-                    }
+                    <label><FaPercent /> Progreso ((0-100))</label>
+                    <input type="number" min="0" max="100" value={progreso} onChange={(e) => setProgreso(e.target.value)} />
                 </div>
 
                 <div className="form-group">
-                    <label>Sipnosis</label>
-                    <textarea
-                        style={{ width: '250px', height: '200px' }}
-                        value={sinopsis}
-                        onChange={(e) => setSinopsis(e.target.value)}
-
-                    />
-                    {
-                        errores.sinopsis &&
-                        <span className="error">
-                            {errores.sinopsis}
-                        </span>
-                    }
+                    <label><FaStar /> Calificación crítica (1-100)</label>
+                    <input type="number" min="0" max="100" value={calificacion} onChange={(e) => setClificacion(e.target.value)} />
+                    {errores.calificacion && <span className="error-mensaje">{errores.calificacion}</span>}
                 </div>
 
+                {/* Textarea de Sinopsis expandido a doble columna mediante CSS */}
+                <div className="form-group full-width">
+                    <label><FaAlignLeft /> Sinopsis</label>
+                    <textarea value={sinopsis} onChange={(e) => setSinopsis(e.target.value)} placeholder="Escribe una breve descripción del juego..." />
+                    {errores.sinopsis && <span className="error-mensaje">{errores.sinopsis}</span>}
+                </div>
             </div>
 
             <div className="form-actions">
+                <button className="btn-cancel" onClick={() => navigate('/')}>Cancelar</button>
                 <button className="btn-save" onClick={manejarGuardar}>
-                    {videoJuegoRecuperado ? <><FaEdit/> Guardar Cambios </> : <><FaPlus/> Guardar Nuevo</>}
-                </button>
-
-                <button className="btn-cancel" onClick={manejarCancelar}>
-                    Cancelar
+                    {videoJuegoRecuperado ? <><FaEdit /> Guardar Cambios</> : <><FaPlus /> Guardar Nuevo</>}
                 </button>
             </div>
         </div>

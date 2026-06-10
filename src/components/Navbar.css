@@ -1,67 +1,85 @@
-/* ===== NAVBAR FUTURISTA ===== */
+/* ===== NAVBAR FUTURISTA PREMIUM ===== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 28px;
+    padding: 12px 22px;
 
-    /* fondo cyber oscuro */
-    background: linear-gradient(135deg, #0a0f1c, #05070f);
+    background: linear-gradient(135deg, #0b1220, #0f172a);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
 
-    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 
     position: sticky;
     top: 0;
     z-index: 1000;
+
+    backdrop-filter: blur(10px);
 }
 
 /* ===== LOGO ===== */
+/* ===== LOGO ===== */
 .navbar__logo {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #fff;
+    display: inline-block; /* Crucial para que los transforms funcionen correctamente */
 
-    color: #00f5ff;
-    text-shadow: 0 0 10px rgba(0, 245, 255, 0.6);
+    /* El text-shadow neón que definimos antes */
+    text-shadow: 
+        0 0 4px #fff,
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8,
+        0 0 40px #38bdf8;
+        
+    /* Asignamos la nueva animación de movimiento */
+    animation: neonFloat 3s ease-in-out infinite alternate;
+}
+
+/* Animación: Movimiento lateral suave (un lado a otro) */
+@keyframes neonFloat {
+    0% {
+        transform: translateX(-3px); /* Se mueve 3 píxeles a la izquierda */
+    }
+    100% {
+        transform: translateX(3px);  /* Se mueve 3 píxeles a la derecha */
+    }
 }
 
 /* ===== LINKS CONTAINER ===== */
 .navbar__links {
     display: flex;
-    gap: 14px;
+    gap: 10px;
 }
 
-/* ===== LINKS FUTURISTAS ===== */
+/* ===== LINKS ===== */
 .navbar__link {
     text-decoration: none;
     color: #cbd5e1;
 
     font-weight: 500;
-    padding: 9px 16px;
+    padding: 8px 14px;
     border-radius: 10px;
 
     transition: all 0.25s ease;
 
-    border: 1px solid rgba(0, 255, 255, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.15);
     background: rgba(255, 255, 255, 0.02);
 }
 
-/* hover neon */
+/* hover limpio neon */
 .navbar__link:hover {
-    background: rgba(0, 245, 255, 0.15);
-    color: #00f5ff;
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
 
     transform: translateY(-2px);
 
-    box-shadow:
-        0 0 10px rgba(0, 245, 255, 0.4),
-        0 0 20px rgba(0, 245, 255, 0.2);
-
-    border: 1px solid rgba(0, 245, 255, 0.5);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.4);
 }
 
-/* efecto click */
+/* click suave */
 .navbar__link:active {
     transform: scale(0.97);
 }
@@ -70,7 +88,7 @@
 @media (max-width: 600px) {
     .navbar {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
         text-align: center;
     }
 

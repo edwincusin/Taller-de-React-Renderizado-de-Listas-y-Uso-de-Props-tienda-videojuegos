@@ -1,135 +1,256 @@
-/* 🌈 Contenedor principal */
-.form-container {
-    max-width: 750px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 18px;
+/* =========================
+   PALETA GAMER SUAVE
+========================= */
+:root {
+    --bg: #0f172a;
+    --card: #111827;
 
-    background: linear-gradient(145deg, #f8fafc, #ffffff);
-    border: 1px solid #e2e8f0;
+    --primary: #38bdf8;
+    --secondary: #a78bfa;
 
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --error: #fb7185;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
     font-family: Arial, sans-serif;
 }
 
-/* 🧠 Título */
-.form-title {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 22px;
-    color: #0f172a;
-    letter-spacing: 0.5px;
+/* =========================
+   CONTENEDOR
+========================= */
+.form-container {
+    max-width: 900px;
+    margin: 30px auto;   
+    padding: 24px;      
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* 📦 Grid del formulario */
+/* =========================
+   TÍTULO (Neon Gamer suave)
+========================= */
+.form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px; 
+    color: var(--primary);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+/* =========================
+   GRID
+========================= */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px; 
 }
 
-/* 📌 Grupo */
+/* Ocupar todo el ancho en elementos clave como la Sinopsis */
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* =========================
+   FORM GROUP
+========================= */
 .form-group {
     display: flex;
     flex-direction: column;
 }
 
-/* 🏷️ Labels */
+/* LABEL (Con iconos integrados) */
 .form-group label {
-    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
     font-weight: 600;
-    color: #334155;
+    margin-bottom: 6px; 
+    color: var(--muted);
 }
 
-/* ✏️ Inputs y selects */
+/* =========================
+   INPUTS, SELECTS & TEXTAREA
+========================= */
 .form-group input,
-.form-group select {
-    padding: 10px 12px;
-    border-radius: 10px;
-
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-
-    color: #0f172a;
+.form-group select,
+.form-group textarea {
+    padding: 10px 12px; 
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
     outline: none;
-
-    transition: 0.25s;
+    font-size: 13px;
+    transition: all 0.2s ease-in-out;
 }
 
-/* 💡 Focus futurista */
+/* Corrección para que las opciones del select se vean bien en modo oscuro */
+.form-group select option {
+    background: var(--card);
+    color: var(--text);
+}
+
+/* FOCUS (Brillo envolvente gamer) */
 .form-group input:focus,
-.form-group select:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    background: rgba(56, 189, 248, 0.02);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
 
-/* ☑️ Checkbox */
-.form-group.checkbox {
-    grid-column: span 2;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
+/* =========================
+   TEXTAREA COMPACTO Y RESPONSIVO
+========================= */
+.form-group textarea {
+    resize: vertical;
+    width: 100%;       /* Ocupa el contenedor sin desbordar */
+    box-sizing: border-box;
+    min-height: 60px;  /* Altura inicial ultra compacta */
 }
 
-.form-group.checkbox label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.form-group textarea:focus {
+    min-height: 110px; /* Expansión suave al escribir */
 }
 
-/* 🎮 acciones botones */
-.form-actions {
-    margin-top: 25px;
-    display: flex;
-    gap: 12px;
-}
-
-/* 🔵 Guardar */
-.btn-save {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-
-    background: linear-gradient(90deg, #0ea5e9, #6366f1);
-    color: white;
-
-    font-weight: bold;
+/* =========================
+   CHECKBOX GAMER
+========================= */
+.checkbox-label {
     cursor: pointer;
+    margin-top: auto; /* Alínea el checkbox perfectamente abajo en el Grid */
+    padding-bottom: 12px;
+}
 
-    transition: 0.25s;
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text);
+    transition: color 0.2s;
+}
+
+.form-group checkbox input[type="checkbox"] {
+    accent-color: var(--primary); /* Pinta el cuadro nativo del color primario */
+}
+
+/* =========================
+   ERRORES ANIMADOS Y NÍTIDOS (.error-mensaje)
+========================= */
+.error-mensaje {
+    color: var(--error);
+    font-size: 11px;
+    margin-top: 5px;
+    font-weight: 600;
+    display: block;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    
+    animation: mostrarError 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes mostrarError {
+    0% {
+        opacity: 0;
+        filter: blur(2px);
+        transform: translateY(-4px);
+    }
+    40% {
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   ACCIONES (Botones de diseño invertido)
+========================= */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 18px; 
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
 }
 
 .btn-save:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+    box-shadow: 0 6px 16px rgba(56, 189, 248, 0.3);
 }
 
-/* 🔴 Cancelar */
 .btn-cancel {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-
-    background: #ef4444;
-    color: white;
-
-    font-weight: bold;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 10px 18px;
+    border-radius: 8px;
     cursor: pointer;
-
-    transition: 0.25s;
+    font-weight: 500;
+    transition: 0.2s;
 }
 
 .btn-cancel:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.25);
+    border-color: var(--error);
+    color: var(--error);
+    background: rgba(251, 113, 133, 0.03);
 }
 
-.error{
-    display:block;
-    color:red;
-    margin-top:5px;
-    font-size:0.85rem;
-    font-weight:600;
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 16px;
+        margin: 10px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse; /* Hace que 'Cancelar' quede abajo en móviles */
+    }
+
+    .btn-save,
+    .btn-cancel {
+        width: 100%;
+        justify-content: center;
+    }
 }

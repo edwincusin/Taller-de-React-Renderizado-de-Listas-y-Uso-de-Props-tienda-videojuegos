@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { FaStore } from "react-icons/fa";
 
 function Navbar() {
     return (
         <nav className="navbar">
-            <span className="navbar__logo">Tienda de Video-Juegos</span>
+            <h2 className="navbar__logo">{<FaStore />} Tienda de Video-Juegos</h2>
 
             <div className="navbar__links">
                 <Link className="navbar__link" to="/">
