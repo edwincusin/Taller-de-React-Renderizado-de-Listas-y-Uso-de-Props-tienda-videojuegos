@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import './FormularioVideojuego.css';
+import { FaGamepad, FaTrash, FaEdit, FaPlus, FaEye  } from "react-icons/fa";
 
 function FormularioVideojuego({ onGuardar }) {
 
@@ -117,9 +118,9 @@ function FormularioVideojuego({ onGuardar }) {
 
     return (
         <div className="form-container">
-            <h2 className="form-title">
+            <h1 className="form-title">
                 {videoJuegoRecuperado ? "Editar Videojuego" : "Nuevo VideoJuego"}
-            </h2>
+            </h1>
 
             <div className="form-grid">
 
@@ -250,7 +251,7 @@ function FormularioVideojuego({ onGuardar }) {
 
             <div className="form-actions">
                 <button className="btn-save" onClick={manejarGuardar}>
-                    {videoJuegoRecuperado ? "Guardar Cambios" : "Guardar Nuevo"}
+                    {videoJuegoRecuperado ? <><FaEdit/> Guardar Cambios </> : <><FaPlus/> Guardar Nuevo</>}
                 </button>
 
                 <button className="btn-cancel" onClick={manejarCancelar}>

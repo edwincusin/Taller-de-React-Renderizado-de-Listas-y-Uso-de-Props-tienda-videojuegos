@@ -1,5 +1,6 @@
 import './TablaVideojuegos.css'
 import { useNavigate } from "react-router-dom";
+import { FaGamepad, FaTrash, FaEdit, FaPlus, FaEye  } from "react-icons/fa";
 
 function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
 
@@ -11,6 +12,8 @@ function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
 
     return (
         <div className="tabla-container">
+            
+            <h1>{<FaGamepad/>} Lista de VideoJuegos {<FaGamepad/>}</h1>
             <table>
                 <thead>
                     <tr>
@@ -20,6 +23,8 @@ function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
                         <th>PLATAFORMA</th>
                         <th>LANZAMIENTO</th>
                         <th>PRECIO</th>
+                        <th>CALF. CRITICA</th>
+                        <th>SINOPSIS</th>
                         <th>DISPONIBLE</th>
                         <th>PROGRESO</th>
                         <th>ACCIONES</th>
@@ -35,7 +40,8 @@ function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
                             <td>{videoJuego.plataforma}</td>
                             <td>{videoJuego.lanzamiento}</td>
                             <td>{(videoJuego.precio).toFixed(2)}</td>
-
+                            <td>{videoJuego.calificacion}</td>
+                            <td>{videoJuego.sinopsis}</td>
                             <td>
                                 <span style={{ color: videoJuego.disponible ? 'green' : 'red' }}>
                                     {videoJuego.disponible ? "Si" : "No"}
@@ -55,13 +61,13 @@ function TablaVideoJuegos({onEliminar,dataVideoJuegos}) {
                                     <button 
                                         onClick={()=>manejarEditar(videoJuego)}
                                     >
-                                        Editar
+                                        {<FaEdit/>}
                                     </button>
 
                                     <button
                                         className="btn-eliminar"
                                         onClick={() => onEliminar(videoJuego.id)}>
-                                        Eliminar
+                                        <FaTrash />
                                     </button>
                                 </div>
                             </td>
