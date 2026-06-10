@@ -54,6 +54,10 @@ function FormularioVideojuego({ onGuardar }) {
 
     //FUNCION MANEJAR GUARDAR
     function manejarGuardar() {
+
+        if (validacionFomulario()) {
+            return;
+        }
         // Se construye un objeto con los datos del formulario
         const videoJuego = {
             // Si estamos editando, conserva el id existente.
@@ -78,6 +82,37 @@ function FormularioVideojuego({ onGuardar }) {
 
     }
 
+
+    //VALIDACION Y MANEJO DE ERRORES
+    const [errores, setErrores] = useState({});
+
+    function validacionFomulario() {
+
+        let erroresActivos = {};
+        //validar titulo
+        if (!titulo.trim()) {
+            erroresActivos.titulo = "El titulo es obligatorio";
+        }
+
+        //validar calificacion 
+        if (calificacion < 1 || calificacion > 100) {
+            erroresActivos.calificacion = "Rango calificacion no permitida"
+        }
+        //validar texto de sinopsis
+        if (sinopsis.trim().length < 10||sinopsis.trim().length > 250) {
+            erroresActivos.sinopsis = "La sinopsis debe tener entre 10 y 250 caracteres"
+        }
+
+        if (Object.keys(erroresActivos).length > 0) {
+            setErrores(erroresActivos);
+            return true;
+        } else {
+            setErrores({});//limpia
+            return false;
+        }
+
+    }
+
     return (
         <div className="form-container">
             <h2 className="form-title">
@@ -94,6 +129,12 @@ function FormularioVideojuego({ onGuardar }) {
                         onChange={(e) => setTitulo(e.target.value)}
                         placeholder="Ejm: Minecraft"
                     />
+                    {
+                        errores.titulo &&
+                        <span className="error">
+                            {errores.titulo}
+                        </span>
+                    }
                 </div>
 
                 <div className="form-group">
@@ -168,13 +209,7 @@ function FormularioVideojuego({ onGuardar }) {
                         onChange={(e) => setProgreso(e.target.value)}
                     />
                 </div>
-                <div className="form-group">
-                    <label>Sipnosis</label>
-                    <textarea
-                        value={sinopsis}
-                        onChange={(e) => setSinopsis(e.target.value)}
-                    />
-                </div>
+               
 
                 <div className="form-group">
                     <label>Calificacion critica (0/100)</label>
@@ -185,6 +220,28 @@ function FormularioVideojuego({ onGuardar }) {
                         value={calificacion}
                         onChange={(e) => setClificacion(e.target.value)}
                     />
+                    {
+                        errores.calificacion &&
+                        <span className="error">
+                            {errores.calificacion}
+                        </span>
+                    }
+                </div>
+
+                 <div className="form-group">
+                    <label>Sipnosis</label>
+                    <textarea
+                    style={{width:'250px', height:'200px'}}
+                        value={sinopsis}
+                        onChange={(e) => setSinopsis(e.target.value)}
+                        
+                    />
+                                        {
+                        errores.sinopsis &&
+                        <span className="error">
+                            {errores.sinopsis}
+                        </span>
+                    }
                 </div>
 
             </div>

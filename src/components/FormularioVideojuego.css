@@ -125,3 +125,11 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(239, 68, 68, 0.25);
 }
+
+.error{
+    display:block;
+    color:red;
+    margin-top:5px;
+    font-size:0.85rem;
+    font-weight:600;
+}
