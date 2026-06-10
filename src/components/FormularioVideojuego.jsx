@@ -1,5 +1,5 @@
-import { use, useEffect, useState } from "react";
-import { data, useLocation, useNavigate } from "react-router-dom";
+import {  useEffect, useState } from "react";
+import {  useLocation, useNavigate } from "react-router-dom";
 import './FormularioVideojuego.css';
 
 function FormularioVideojuego({ onGuardar }) {
@@ -66,7 +66,7 @@ function FormularioVideojuego({ onGuardar }) {
             titulo: titulo,
             genero: genero,
             plataforma: plataforma,
-            lanzamiento: Number(lanzamiento),
+            lanzamiento: lanzamiento,
             precio: Number(precio),
             disponible: disponible,  // Valor booleano del checkbox
             progreso: Number(progreso) / 100 // Convierte el progreso a número

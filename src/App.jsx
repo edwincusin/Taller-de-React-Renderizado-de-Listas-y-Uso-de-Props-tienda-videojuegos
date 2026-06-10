@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import data from './data/videojuegos.js'
 import Navbar from './components/Navbar.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -10,8 +10,23 @@ import NoEncontrada from './components/NoEncontrado.jsx';
 
 //FUNCION PRINCIPAL DE APP
 function App() {
-  //variable de estado del data
-  const [videoJuegos, setVideojuegos] = useState(data);
+  // Estado principal de videojuegos.
+  // Al iniciar la aplicación intenta recuperar los datos guardados en localStorage.
+  // Si no existen registros almacenados, utiliza los datos iniciales del archivo data.
+  const [videoJuegos, setVideojuegos] = useState(() => {
+    const datosGuardados = localStorage.getItem("lista_videojuegos");
+    return datosGuardados ? JSON.parse(datosGuardados) : data;
+  });
+
+  // Persistencia automática.
+  // Cada vez que la lista de videojuegos cambie (agregar, editar o eliminar),
+  // se actualiza localStorage para conservar la información entre recargas
+  useEffect(() => {
+    localStorage.setItem(
+      "lista_videojuegos",
+      JSON.stringify(videoJuegos)
+    );
+  }, [videoJuegos]);
 
   //GUARDAR VIDEO JUEGO
   function guardar(videoJuego) {
@@ -81,7 +96,7 @@ function App() {
         <Route
           path="*"
           element={
-            <NoEncontrada/>
+            <NoEncontrada />
           }
         />
 
