@@ -54,7 +54,9 @@ function FormularioVideojuego({ onGuardar }) {
 
 
     //FUNCION MANEJAR GUARDAR
-    function manejarGuardar() {
+    function manejarGuardar(e) {
+
+         e.preventDefault(); //  Evita comportamiento nativo del navegador
 
         if (validacionFomulario()) {
             return;
@@ -116,7 +118,7 @@ function FormularioVideojuego({ onGuardar }) {
     }
 
   return (
-        <div className="form-container">
+        <form className="form-container" onSubmit={manejarGuardar}>
             <h1 className="form-title">
                 {videoJuegoRecuperado ? <><FaEdit /> Editar Videojuego</> : <><FaGamepad /> Nuevo Videojuego</>}
             </h1>
@@ -190,12 +192,12 @@ function FormularioVideojuego({ onGuardar }) {
             </div>
 
             <div className="form-actions">
-                <button className="btn-cancel" onClick={manejarCancelar}>Cancelar</button>
-                <button className="btn-save" onClick={manejarGuardar}>
+                <button type="button" className="btn-cancel" onClick={manejarCancelar}>Cancelar</button>
+                <button className="btn-save" type="submit">
                     {videoJuegoRecuperado ? <><FaEdit /> Guardar Cambios</> : <><FaPlus /> Guardar Nuevo</>}
                 </button>
             </div>
-        </div>
+        </form>
     );
 }
 
