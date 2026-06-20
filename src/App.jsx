@@ -59,6 +59,11 @@ function App() {
 
   }
 
+  //FUNCION SALUDAR
+  const saludarTienda=(nombreTienda)=>{
+    alert(`Bienvenido ${nombreTienda}`);
+  }
+
   //MANEJO GAURDAR
   function manejarGuardar(videoJuego) {
     const existe = videoJuegos.find((vid) => vid.id === videoJuego.id);
@@ -79,7 +84,8 @@ function App() {
           mensaje={mensajeAlerta}
         />
       )}
-      <Navbar />
+      <Navbar nombreTienda={"GAmes CSn"} onSaludar={saludarTienda}/>
+      
       <Routes>
         <Route
           path="/"

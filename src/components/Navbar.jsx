@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { FaStore } from "react-icons/fa";
 
-function Navbar() {
+function Navbar({nombreTienda,onSaludar}) {
     return (
         <nav className="navbar">
-            <h2 className="navbar__logo">{<FaStore />} Tienda de Video-Juegos</h2>
+            <h2 className="navbar__logo">{<FaStore />} {nombreTienda}</h2>
 
+            <button
+                onClick={()=>onSaludar(nombreTienda)}
+            >Saludar</button>
             <div className="navbar__links">
                 <Link className="navbar__link" to="/">
                     VideoJuegos
